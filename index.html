@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$Title$</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.min.js"></script>
+    <script src="dist/app.js"></script>
+    <style>
+        div.person {
+            display: inline-block;
+            padding-left: 15px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="64" height="64"></canvas>
+    <div id="patternContainer"></div>
+    <script>
+        requirejs(['app']);
+        console.log('started!!!')
+    </script>
+</body>
+</html>

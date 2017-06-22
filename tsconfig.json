@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "module": "amd",
+        "target": "es6",
+        "outDir": "dist",
+        "lib": ["es6", "dom"],
+        "noImplicitAny": false,
+        "outFile": "./dist/app.js",
+        "sourceMap": true
+    }
+}
