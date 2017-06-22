@@ -57,12 +57,12 @@ export function renderMatrix( matrix, id = 'Эталон', parent = document.bod
              * цвет нужно брать из из оригинальной матрицы
              * @type {number}
              */
-            let colorNumber = matrix[x][y] * 255/DEFAULT_RANGE; // let rand1 = Math.random() > 0.5 ? 255 : 0;
+            let colorNumber = matrix[x][y]; // let rand1 = Math.random() > 0.5 ? 255 : 0;
             /**
              *  32 бита RGBA число
              * @type {number} 8 бит RED, 8 бит GREEN, 8 бит BLUE, 8 бит ALPHA( прозразность )
              */
-            let color = colorNumber | colorNumber << 8 | colorNumber << 16 | 255 << 24;
+            let color = colorNumber | colorNumber << 8 | colorNumber << 16 | (255 << 24);
             // let color = 255 | rand1 << 8 | rand2 << 16 | 255 << 24;
             /**
              * Заполняем оригинальный буффер строки пискселей

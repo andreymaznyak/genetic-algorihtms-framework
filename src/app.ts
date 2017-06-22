@@ -1,4 +1,5 @@
 import { GeneticAlgorithmEngine } from './lib/engine';
+import { DEFAULT_RANGE } from './lib/config';
 export const app = new Promise( res => {
     console.log('listen');
     res();
@@ -26,10 +27,11 @@ export const app = new Promise( res => {
             res.push(currentRow);
             currentRow = [];
         }
+        // currentRow.push( imgData.data[i] | (imgData.data[i+1] << 8) | (imgData.data[i+2] << 16));
         currentRow.push(imgData.data[i]);
         // console.log(currentRow);
     }
-    // console.log(res);
+    console.log(res);
     return res;
 }).then( (res) => {
     GeneticAlgorithmEngine.addPattern(res);

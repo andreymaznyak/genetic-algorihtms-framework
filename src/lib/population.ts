@@ -1,7 +1,7 @@
 import { Person } from './person';
 import { renderMatrix } from './visualization';
 import { getRandomInt } from './utils';
-import { DEFAULT_SELECTION_COUNT, DEFAULT_POPULATION_LENGTH } from './config';
+import { DEFAULT_SELECTION_COUNT, DEFAULT_POPULATION_LENGTH, DEFAULT_RANGE } from './config';
 import { GeneticAlgorithmEngine } from './engine';
 export class Population extends Array {
 
@@ -76,6 +76,34 @@ export class Population extends Array {
         return this;
     }
 
+    differentialEvolution() {
+        let count = 0;
+        this.map( (person, index) => {
+            const pairs1 = this[Population.generateRandomIndex(index, this.length)],
+                  pairs2 = this[Population.generateRandomIndex(index, this.length)],
+                  pairs3 = this[Population.generateRandomIndex(index, this.length)],
+                  F = 1;
+            /**
+             * v = v1 + F * (v2 - v3)
+             */
+            let v = person.map( () => [] );
+            for ( let i = person.length; i--; ) {
+                for( let j = person.length; j--; ) {
+                    v[i][j] = Math.floor(pairs1[i][j] + F * (pairs2[i][j] - pairs3[i][j])) % DEFAULT_RANGE;
+                }
+            }
+            let mutated = new Person( v );
+            if ( mutated.fitness < person.fitness ) {
+                mutated = person.merge(mutated);
+                if ( mutated.fitness < person.fitness ) {
+                    this[index] = mutated;
+                    count++;
+                }
+            }
+        });
+        // console.log('BestElementCount', count);
+        return this;
+    }
 
     render(idPrefix = '', parent = document.body) {
         // for ( let i = 0; i < this.length; i++ ) {
@@ -95,4 +123,9 @@ export class Population extends Array {
         return this;
     }
 
+    static generateRandomIndex( originIndex, maximum ) {
+        let randomIndex = originIndex;
+        while(randomIndex === originIndex) randomIndex = getRandomInt(0, maximum);
+        return randomIndex;
+    }
 }

@@ -6,6 +6,6 @@
         "lib": ["es6", "dom"],
         "noImplicitAny": false,
         "outFile": "./dist/app.js",
-        "sourceMap": true
+        "sourceMap": false
     }
 }

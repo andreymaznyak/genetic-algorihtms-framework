@@ -26,7 +26,7 @@ export class Person extends Array {
             for (let x = 0; x < options; x++ ) {
                 this.push([]);
                 for (let y = 0; y < options; y++ ) {
-                    this[x][y] = getRandomInt(0, DEFAULT_RANGE + 1);
+                    this[x][y] = getRandomInt(0, DEFAULT_RANGE);
                 }
             }
         }
