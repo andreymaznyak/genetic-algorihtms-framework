@@ -73,11 +73,11 @@ class Person extends Array{
 }
 
 
-const RANGE = 1;
+const r = RANGE = 1;
 const PATTERNS = [new Person([
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, RANGE, RANGE, 0, 0, 0, 0, 0, 0],
-        [0, RANGE, RANGE, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, r, r, 0, 0, 0, 0, 0, 0],
+        [0, r, r, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -85,24 +85,54 @@ const PATTERNS = [new Person([
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
     ]),
     new Person([
-        [0, RANGE, 0, 0, 0, 0, 0, 0],
-        [0, 0, RANGE, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, RANGE, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, RANGE, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, RANGE, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, RANGE, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, RANGE, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, RANGE],
+        [0, r, 0, 0, 0, 0, 0, 0],
+        [0, 0, r, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, r, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, r, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, r, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, r, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, r, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, r],
     ]),
     new Person([
-        [0, RANGE, 0, 0, 0, 0, 0, RANGE],
-        [0, 0, RANGE, 0, 0, 0, RANGE, 0, 0],
-        [0, 0, 0, RANGE, 0, RANGE, 0, 0, 0],
-        [0, 0, 0, 0, RANGE, 0, 0, 0, 0],
-        [0, 0, 0, RANGE, 0, RANGE, 0, 0, 0],
-        [0, 0, RANGE, 0, 0, 0, RANGE, 0, 0],
-        [0, RANGE, 0, 0, 0, 0, 0, RANGE, 0],
-        [RANGE, 0, 0, 0, 0, 0, 0, 0, RANGE],
+        [0, r, 0, 0, 0, 0, 0, r, 0],
+        [0, 0, r, 0, 0, 0, r, 0, 0],
+        [0, 0, 0, r, 0, r, 0, 0, 0],
+        [0, 0, 0, 0, r, 0, 0, 0, 0],
+        [0, 0, 0, r, 0, r, 0, 0, 0],
+        [0, 0, r, 0, 0, 0, r, 0, 0],
+        [0, r, 0, 0, 0, 0, 0, r, 0],
+        [r, 0, 0, 0, 0, 0, 0, 0, r],
+    ]),
+    new Person([
+        [0, 0, 0, 0, r, 0, 0, 0, 0],
+        [0, 0, 0, r, 0, r, 0, 0, 0],
+        [0, 0, r, 0, 0, 0, r, 0, 0],
+        [0, 0, r, r, r, r, r, 0, 0],
+        [0, 0, r, 0, 0, 0, r, 0, 0],
+        [0, 0, r, 0, r, 0, r, 0, 0],
+        [0, 0, r, 0, 0, 0, r, 0, 0],
+        [0, 0, r, r, r, r, r, 0, 0],
+    ]),
+    new Person([
+        [r, r, r, r, r, r, r, r, r],
+        [r, 0, r, r, 0, r, r, 0, r],
+        [r, r, r, 0, r, 0, r, r, r],
+        [r, r, 0, r, r, r, 0, r, r],
+        [r, 0, r, r, 0, r, r, 0, r],
+        [r, r, 0, r, r, r, 0, r, r],
+        [r, r, r, 0, r, 0, r, r, r],
+        [r, 0, r, r, 0, r, r, 0, r],
+    ]),
+    new Person([
+        [r, r, r, r, 0, r, r, r, r],
+        [r, r, r, 0, r, 0, r, r, r],
+        [r, r, 0, r, r, r, 0, r, r],
+        [r, r, 0, 0, 0, 0, 0, r, r],
+        [r, r, 0, r, r, r, 0, r, r],
+        [r, r, 0, r, 0, r, 0, r, r],
+        [r, r, 0, r, r, r, 0, r, r],
+        [r, r, 0, 0, 0, 0, 0, r, r],
     ]),
 ];
 let currentPattern = PATTERNS[0];
@@ -158,8 +188,11 @@ function tick(population) {
         console.log("REREMDER");
         currentPattern = PATTERNS[(PATTERNS.indexOf(currentPattern) + 1) % PATTERNS.length].render('pattern', document.getElementById('patternContainer'));
         setTimeout(
-            () => tick(population),
-            5000
+            () => {
+                population.init(true);
+                tick(population)
+            },
+            500
         )
     }
 }
@@ -179,11 +212,21 @@ class Population extends Array {
      * Генерируем случаный особей до нужного размера
      * @return {Population}
      */
-    init() {
-        for ( let i = 0; this.length < POPULATION_LENGTH; i++) {
-            let person = new Person();
-            this.push(person);
+    init( kill = false ) {
+        if ( kill ) {
+            Array.prototype.splice.call(this, 0, 1);
+            console.log(this.length);
+            for ( let i = 0; i < POPULATION_LENGTH; i++) {
+                this[i] = new Person();
+            }
+            console.log(this.length);
+        } else {
+            for ( let i = 0; this.length < POPULATION_LENGTH; i++) {
+                let person = new Person();
+                this.push(person);
+            }
         }
+
         return this;
     }
     render(idPrefix = '', parent = document.body) {
@@ -203,13 +246,29 @@ class Population extends Array {
         return this;
     }
     selection() {
+        function tournamentSelection( populate ) {
+
+
+                const first = populate[getRandomInt(0,populate.length)],
+                      second = populate[getRandomInt(0,populate.length)];
+            return first.fitness < second.fitness ? first : second;
+        }
+        let arr = Array.from(this);
+        const newPopulation = [];
+        for ( let i = 0; i < SELECTION_COUNT; i++) {
+            let person = tournamentSelection(arr);
+            arr = arr.filter( currentPerson => currentPerson !== person );
+            newPopulation.push(person);
+        }
+        Array.prototype.splice.call(this, 0, SELECTION_COUNT);
+        newPopulation.map((val, i) => this[i] = val);
         // const happiness = [];
         // for ( let i = 0; i < HAPPINESS_COUNT; i++ ) {
         //     happiness.push(this[getRandomInt(SELECTION_COUNT + 1, this.length)]);
         // }
-        Array.prototype.splice.call(this, 0, SELECTION_COUNT).map(
-            (val, i) => this[i] = val
-        );
+        // Array.prototype.splice.call(this, 0, SELECTION_COUNT).map(
+        //     (val, i) => this[i] = val
+        // );
         // happiness.map(
         //     val => this.push(val)
         // );
@@ -279,13 +338,22 @@ function merge( left, right ) {
 function fitness( instance, pattern ) {
     let result = 0;
 
-    instance.map( (row, x) =>
-       row.map(
-           (el, y) => result += Math.abs((el - pattern[x][y]) * RANGE)
-       )
-    );
+    // instance.map( (row, x) =>
+    //     row.map(
+    //         (el, y) => result += Math.abs((el - pattern[x][y]) * RANGE)
+    //     )
+    // );
+    let results = [];
+    PATTERNS.map( (pattern, i) => {
+        results.push(0);
+        instance.map( (row, x) =>
+            row.map(
+                (el, y) => results[i] += Math.abs((el - pattern[x][y]) * RANGE)
+            )
+        );
+    });
     // console.log('FITNESS', result);
-    return result;
+    return results.reduce( (c, p) => p < c ? p : c );
 }
 
 /**
